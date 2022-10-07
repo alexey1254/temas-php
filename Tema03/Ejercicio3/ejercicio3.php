@@ -9,9 +9,9 @@
 </head>
 <body>
     <?php 
-        require_once("../../librerias/funcionesAuxImagenes.php");
+        require_once("../librerias/funcionesAuxImagenes.php");
         $numAleatorio=strval(random_int(10000,99999));
-        mostrarNumImagen($numAleatorio, "/img/imgNumeros");
+        mostrarNumImagen($numAleatorio, "../img/imgNumeros","10");
     ?>
 </body>
 </html>

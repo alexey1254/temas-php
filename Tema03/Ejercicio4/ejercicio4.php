@@ -20,7 +20,7 @@
             sort($numeros);
             return $numeros;
         }
-        require_once("../../librerias/funcionesAuxImagenes.php");
+        require_once("../librerias/funcionesAuxImagenes.php");
 
         
         echo "<table border='1'>";
@@ -28,7 +28,7 @@
         echo "<tr>\n";
         foreach($numeros as $numero){
             echo "<td>\n";
-            mostrarNumImagen($numero, "../../img/imgNumeros");
+            mostrarNumImagen($numero, "../img/imgNumeros","15");
             echo "</td>\n";
         }
         echo "</tr>\n";

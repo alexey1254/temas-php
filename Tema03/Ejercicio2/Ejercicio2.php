@@ -22,8 +22,7 @@
                 array_push($array, $numeroGenerado);
             }
             
-            
-        } while(count($array)<$numeros);
+        } while(count($array) < $numeros);
         sort($array);
         return $array;
     }
