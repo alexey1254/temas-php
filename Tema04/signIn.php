@@ -1,5 +1,5 @@
 <?php 
-
+declare(strict_types=1);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,11 +18,11 @@
         <table>
             <tr>
                 <td><label>Nombre:</label></td>
-                <td><input type="text"/></td>
+                <td><input type="text" required /></td>
             </tr>
             <tr>
                 <td><label>Primer Apellido:</label></td>
-                <td><input type="text"/></td>
+                <td><input type="text" required/></td>
             </tr>
             <tr>
                 <td><label>Segundo Apellido:</label></td>
@@ -30,15 +30,19 @@
             </tr>
             <tr>
                 <td><label>Nombre de Usuario:</label></td>
-                <td><input type="text"/><br/></td>
+                <td><input type="text" required/><br/></td>
             </tr>
             <tr>
                 <td><label>Contraseña:</label></td>
-                <td><input type="password"/></td>
+                <td><input type="password" required/></td>
+            </tr>
+            <tr>
+                <td><label>Confirmar contraseña:</label></td>
+                <td><input type="password" required/></td>
             </tr>
             <tr>
                 <td><label>E-mail:</label></td>
-                <td><input type="email"/><br/></td>
+                <td><input type="email" required/><br/></td>
             </tr>
         </table>
         <button type="submit">Crear Cuenta</button>

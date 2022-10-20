@@ -1,3 +1,21 @@
+<?php 
+function checkAuth() {
+    $validAuth=[
+        'user'=>'dwes',
+        'pass'=>'$6$vSeuwOWCW76fC421$ZT4EK2OtOcZY7E6ofRGzlimqxe72mJrIy74R.l3ZuRb8PHCNnUtj9xqK4tTdjs0qRVy5ZUWS3sbB25DQCBwX31'
+    ];
+    return isset($_SERVER['PHP_AUTH_USER'])
+    && isset($_SERVER['PHP_AUTH_PW'])
+    && $_SERVER['PHP_AUTH_USER']==$validAuth['user']
+    && password_verify($_SERVER['PHP_AUTH_PW'], $validAuth['pass']);
+    }
+    if (!checkAuth()) {
+        header('WWW-Authenticate: Basic Realm="Contenido restringido"');
+        header('HTTP/1.1 401 Unauthorized');
+        echo("Usuario no reconocido!");
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
