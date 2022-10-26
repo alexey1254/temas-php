@@ -1,4 +1,8 @@
-<?php declare(strict_types=1);?>
+<?php declare(strict_types=1);
+session_start();
+if(isset($_SESSION['user']) && $_SESSION['user'] =="admin") {
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,44 +24,12 @@
     </script>
 </head>
 <body>
-    <?php 
+    <?php
     if(isset($_POST['email'])) {
         require_once("../../config.php");
+        require_once("../../funciones.php");
 
-        /**
-         * Busca un usuario en un archivo y devuelve los datos del usuario si los encuentra, o falso si
-         * no los encuentra
-         * 
-         * @param string user El nombre de usuario del usuario que desea buscar.
-         * 
-         * @return array|bool una matriz o un booleano.
-         */
-        function buscarUsuario(string $user): array|bool {
-            $fdBdUsuarios=fopen(DATA_PATH."bdUsuarios.txt", "r"); 
-            while($linea=fgets($fdBdUsuarios)) {
-                $datosUsuario = json_decode($linea, true);
-                if($datosUsuario['user']==$user) {
-                    fclose($fdBdUsuarios);
-                    return $datosUsuario;
-                }
-            }
-            fclose($fdBdUsuarios);
-            return false;
-        }
-        
-        /**
-         * Crea un usuario.
-         * 
-         * @param array datosUsuario Una matriz que contiene los datos del usuario.
-         */
-        function crearUsuario(array $datosUsuario) {
-            $fdBdUsuarios=fopen(DATA_PATH."bdUsuarios.txt", "a");
-            $datosUsuario['user'] = password_hash($datosUsuario['user'], PASSWORD_DEFAULT);
-            $datosUsuarioJSON = json_encode($datosUsuario, JSON_UNESCAPED_UNICODE);
-            fputs($fdBdUsuarios, $datosUsuarioJSON);
-            fclose($fdBdUsuarios);
-        }
-        if(buscarUsuario($_POST['user'])==false) {
+        if(buscarUsuario($_POST["user"], DATA_PATH."/bdUsuarios.txt") == false) { // Si no encuentra el usuario en el json:
             $nombre=$_POST['nombre'];
             $ap1=$_POST['ap1'];
             $ap2=$_POST['ap2'];
@@ -67,19 +39,19 @@
 
             $datosUsuario = [
                 "nombre"=>$ap1,
-                "usuario" =>$user,
                 "ap1" => $ap1,
                 "ap2" => $ap2,
+                "user" =>$user,
                 "password" => $pass,
                 "email" => $email
         ];
-        crearUsuario($datosUsuario);
+        crearUsuario($datosUsuario, DATA_PATH."/bdUsuarios.txt");
         echo "<span>Su usuario ha sido creado correctamente</span>";
 
-        } else {
+        } else { // Cuando el usuario ya existe:
             echo "<span>El usuario ", $_POST['user']," ya existe</span>";
         }
-        buscarUsuario($_POST('user'));
+        buscarUsuario($_POST['user'], DATA_PATH."/bdUsuarios.txt");
     } else {
     ?>
 <style>
@@ -103,7 +75,7 @@
             </tr>
             <tr>
                 <td><label>Nombre de Usuario:</label></td>
-                <td><input type="text" required name="userName"/><br/></td>
+                <td><input type="text" required name="user"/><br/></td>
             </tr>
             <tr>
                 <td><label>Contraseña:</label></td>
@@ -118,10 +90,13 @@
                 <td><input type="email"name="email" required/><br/></td>
             </tr>
         </table>
-        <button type="submit">Crear Cuenta</button>
+        <button type="submit" onclick="chequearDatos()">Crear Cuenta</button>
     </form>
     <?php
         }
+    } else {
+        header("Location: ./logIn.php");
+    }
     ?>
 </body>
 </html>
