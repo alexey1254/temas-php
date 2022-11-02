@@ -10,6 +10,11 @@ if(isset($_SESSION['user']) && $_SESSION['user'] =="admin") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de alta</title>
     <script>
+/**
+ * Comprueba si las dos contraseñas son iguales
+ * 
+ * @return un valor booleano.
+ */
         function chequearDatos() {
             const pass1 = document.forms('alta').pass1.value;
             const pass2 = document.forms('alta').pass2.value;
@@ -25,7 +30,7 @@ if(isset($_SESSION['user']) && $_SESSION['user'] =="admin") {
 </head>
 <body>
     <?php
-    if(isset($_POST['email'])) {
+    if(isset($_SERVER['PHP_AUTH_USER']) == "admin") {
         require_once("../../config.php");
         require_once("../../funciones.php");
 

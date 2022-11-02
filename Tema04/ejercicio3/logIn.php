@@ -17,12 +17,13 @@ declare(strict_types=1);
             $rutaArchivo = DATA_PATH."/bdUsuarios.txt";
             $usuario = buscarUsuario($user, $rutaArchivo);
             if($usuario == false) {
-                echo "<label>El usuario no existe</label>";
+                echo "<div>El usuario no existe</div><a href=''>Volver</a>";
             } else {
                 echo "<span>
                 Bienvenido ".$usuario['nombre']."</span>\n";
+                header("Location: ./menu.php");
             if(isset($_SERVER['PHP_AUTH_USER']) == "admin") {
-                header("Location: ../ejercicio3/bienvenido.phpp");
+                //header("Location: /menu.php");
             }
             }
         } else {
