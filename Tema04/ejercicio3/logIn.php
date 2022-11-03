@@ -17,14 +17,16 @@ declare(strict_types=1);
             $rutaArchivo = DATA_PATH."/bdUsuarios.txt";
             $usuario = buscarUsuario($user, $rutaArchivo);
             if($usuario == false) {
-                echo "<div>El usuario no existe</div><a href=''>Volver</a>";
+                echo "<span>El usuario no existe</span><a href=''>Volver</a>";
             } else {
+                session_start();
+                $_SESSION['usuario'] = $_POST['username'];
                 echo "<span>
                 Bienvenido ".$usuario['nombre']."</span>\n";
                 header("Location: ./menu.php");
-            if(isset($_SERVER['PHP_AUTH_USER']) == "admin") {
+            //if(isset($_SERVER['PHP_AUTH_USER']) == "admin") {
                 //header("Location: /menu.php");
-            }
+            //}
             }
         } else {
     ?>

@@ -19,6 +19,7 @@ declare(strict_types=1);
             if($usuario == false) {
                 echo "<label>El usuario no existe</label>";
             } else {
+
                 echo "<span>
                 Bienvenido ".$usuario['nombre']."</span>\n";
             if(isset($_SERVER['PHP_AUTH_USER']) == "admin") {

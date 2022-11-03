@@ -1,11 +1,19 @@
 <?php
-    require_once("requiereIdent.php");
+    session_start();
     require_once("logIn.php");
-    $user = $_SESSION['user'];
-    echo "<a href='modificar.php'>Ver/modificar datos</a><br>";
 
-    if($user==="admin") {
-        echo "<a href='altaUsuario.php'>Alta de usuario</a><br>";
+    if($_SESSION['usuario'] != null || $_SESSION['usuario'] != "") {
+        echo "<a href='verDatos.php'>Ver/modificar datos</a><br>";
+        if($_SESSION['usuario']=="admin") {
+            echo "<a href='./formularioAlta.html'>Alta de usuario</a><br>";
+        }
+        echo "<a href='logout.php'>Cerrar sesión</a><br>";
     }
-    echo "<a href='logout.php'>Cerrar sesion</a><br>";
+    else {
+        echo "<p>No tienes autorización para acceder a esta página</p>";
+    }
+
+
+
+
 ?>

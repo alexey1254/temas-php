@@ -37,4 +37,6 @@ function crearUsuario(array $datosUsuario, string $rutaArchivo) {
     fclose($fdBdUsuarios);
 }
 
+
+
 ?>
