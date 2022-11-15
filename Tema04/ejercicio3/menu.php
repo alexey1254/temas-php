@@ -3,7 +3,7 @@
     require_once("logIn.php");
 
     if($_SESSION['usuario'] != null || $_SESSION['usuario'] != "") {
-        echo "<a href='verDatos.php'>Ver/modificar datos</a><br>";
+        echo "<a href='modificar.php'>Ver/modificar datos</a><br>";
         if($_SESSION['usuario']=="admin") {
             echo "<a href='./formularioAlta.html'>Alta de usuario</a><br>";
         }

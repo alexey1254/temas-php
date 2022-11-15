@@ -9,7 +9,7 @@
             "stock"=>""
     ];
         
-        function __construct($id, $nombre, $precio, $descripcion, $imagen, $stock) {
+        function __construct($id, $nombre, $precio, $descripcion, $imagen, $stock=100) {
             $this-> id =$id; 
             $this-> nombre = $nombre;
             $this-> precio = $precio;
@@ -30,7 +30,7 @@
         }
 
         function __toString() {
-            return "Producto: ".json_encode($this->atributos, JSON_UNESCAPED_UNICODE);
+        return "Producto: ".json_encode($this->atributos, JSON_UNESCAPED_UNICODE);
         }
     }
 
